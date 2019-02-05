@@ -1,16 +1,23 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
 
 const app = express();
 
 
 
-app.get('/', (req, res) => {
-    return res.send('hello');
+mongoose.connect('mongodb://goweek:goweek1234@ds251287.mlab.com:51287/goweek-backend-carlos', {
+    useNewUrlParser: true
 });
+
+
+app.use(require('./routes'));
+
+
 
 var PORT = process.env.PORT || 4000;
 
 
 app.listen(PORT, () => {
-    console.log('Server started on port 3000');
+    console.log(`Server started on port ${ PORT }`);
 });
